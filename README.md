@@ -1,4 +1,4 @@
-# Experiment 04 : DevOps_Exploring-Containerization-and-Application-Deployment-with-Docker
+# Experiment 04 : Exploring-Containerization-and-Application-Deployment-with-Docker
 
 
 <h1>Aim</h1>
