@@ -1,170 +1,159 @@
-# Experiment 05 : DevOps_Exploring-Containerization-and-Application-Deployment-with-Docker
+# Experiment 04 : DevOps_Exploring-Containerization-and-Application-Deployment-with-Docker
+
 
 <h1>Aim</h1>
 <p>
-  The objective of this experiment is to gain hands-on experience with the Maven build lifecycle by creating a simple Java project 
-  and executing various Maven build phases.
+The objective of this experiment is to provide hands-on experience with Docker containerization 
+and application deployment by deploying an Apache web server in a Docker container. 
+By the end of this experiment, you will understand the basics of Docker, how to create Docker containers, 
+and how to deploy a simple web server application.
 </p>
 
 <h1>Theory</h1>
 <p>
-  Maven is a widely-used build automation and project management tool in the Java ecosystem. 
-  It provides a clear and standardized build lifecycle for Java projects, allowing developers to perform various tasks such as compiling code, 
-  running tests, packaging applications, and deploying artifacts. This experiment aims to demonstrate the Maven build lifecycle and its different phases.
+Containerization is a technology that has revolutionized the way applications are developed, deployed, 
+and managed in the modern IT landscape. It provides a standardized and efficient way to package, 
+distribute, and run software applications and their dependencies in isolated environments called containers.
+</p>
+<p>
+Containerization technology has gained immense popularity, with Docker being one of the most well-known 
+containerization platforms. This introduction explores the fundamental concepts of containerization, 
+its benefits, and how it differs from traditional approaches to application deployment.
 </p>
 
-<h2>Key Maven Concepts</h2>
+<h2>Key Concepts of Containerization</h2>
 <ul>
-  <li>
-      <b>Project Object Model (POM):</b> The POM is an XML file named <code>pom.xml</code> that defines a project's configuration, dependencies, plugins, and goals. 
-      It serves as the project's blueprint and is at the core of Maven's functionality.
-  </li>
-  <li>
-      <b>Build Lifecycle:</b> Maven follows a predefined sequence of phases and goals organized into build lifecycles. 
-      These lifecycles include clean, validate, compile, test, package, install, and deploy, among others.
-  </li>
-  <li>
-      <b>Plugin:</b> Plugins are extensions that provide specific functionality to Maven. 
-      They enable tasks like compiling code, running tests, packaging artifacts, and deploying applications.
-  </li>
-  <li>
-      <b>Dependency Management:</b> Maven simplifies dependency management by allowing developers to declare project dependencies in the POM file. 
-      Maven downloads these dependencies from repositories like Maven Central.
-  </li>
-  <li>
-      <b>Repository:</b> A repository is a collection of artifacts (compiled libraries, JARs, etc.) that Maven uses to manage dependencies. 
-      Maven Central is a popular public repository, and organizations often maintain private repositories.
-  </li>
+<li>
+  <b>Containers:</b> Containers are lightweight, stand-alone executable packages that include everything 
+  needed to run a piece of software, including the code, runtime, system tools, libraries, and settings. 
+  Containers ensure that an application runs consistently and reliably across different environments, 
+  from a developer's laptop to a production server.
+</li>
+<li>
+  <b>Images:</b> Container images are the templates for creating containers. They are read-only and contain 
+  all the necessary files and configurations to run an application. Images are typically built from a set 
+  of instructions defined in a Dockerfile.
+</li>
+<li>
+  <b>Docker:</b> Docker is a popular containerization platform that simplifies the creation, distribution, 
+  and management of containers. It provides tools and services for building, running, and orchestrating 
+  containers at scale.
+</li>
+<li>
+  <b>Isolation:</b> Containers provide process and filesystem isolation, ensuring that applications and 
+  their dependencies do not interfere with each other. This isolation enhances security and allows 
+  multiple containers to run on the same host without conflicts.
+</li>
 </ul>
 
-<h2>Maven Build Lifecycle</h2>
+<h2>Benefits of Containerization</h2>
+<ul>
+<li>Consistency: Containers ensure that applications run consistently across different environments, reducing the "it works on my machine" problem.</li>
+<li>Portability: Containers are portable and can be easily moved between different host machines and cloud providers.</li>
+<li>Resource Efficiency: Containers share the host operating system's kernel, which makes them lightweight and efficient in terms of resource utilization.</li>
+<li>Scalability: Containers can be quickly scaled up or down to meet changing application demands, making them ideal for microservices architectures.</li>
+<li>Version Control: Container images are versioned, enabling easy rollback to previous application states if issues arise.</li>
+<li>DevOps and CI/CD: Containerization is a fundamental technology in DevOps and CI/CD pipelines, allowing for automated testing, integration, and deployment.</li>
+</ul>
+
+<h2>Containerization vs. Virtualization</h2>
 <p>
-  The Maven build process is organized into a set of build lifecycles, each comprising a sequence of phases. 
-  Here are the key build lifecycles and their associated phases:
+Containerization differs from traditional virtualization, where a hypervisor virtualizes an entire operating 
+system (VM) to run multiple applications. In contrast:
 </p>
-<h3>Clean Lifecycle</h3>
 <ul>
-  <li><b>clean:</b> Deletes the target directory, removing all build artifacts.</li>
+<li>Containers share the host OS kernel, making them more lightweight and efficient.</li>
+<li>Containers start faster and use fewer resources than VMs.</li>
+<li>VMs encapsulate an entire OS, while containers package only the application and its dependencies.</li>
 </ul>
-<h3>Default Lifecycle</h3>
-<ul>
-  <li><b>validate:</b> Validates the project's structure.</li>
-  <li><b>compile:</b> Compiles the project's source code.</li>
-  <li><b>test:</b> Runs tests using a suitable testing framework.</li>
-  <li><b>package:</b> Packages the compiled code into a distributable format (e.g., JAR, WAR).</li>
-  <li><b>verify:</b> Runs checks on the package to verify its correctness.</li>
-  <li><b>install:</b> Installs the package to the local repository.</li>
-  <li><b>deploy:</b> Copies the final package to a remote repository for sharing.</li>
-</ul>
-<h3>Site Lifecycle</h3>
-<ul>
-  <li><b>site:</b> Generates project documentation.</li>
-</ul>
-<p>
-  Each phase within a lifecycle is executed in sequence, and the build progresses from one phase to the next. 
-  Developers can customize build behavior by configuring plugins and goals in the POM file.
-</p>
 
 <h1>Materials</h1>
 <ul>
-  <li>A computer with Maven installed (<a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a>)</li>
-  <li>A code editor (e.g., Visual Studio Code, IntelliJ IDEA)</li>
-  <li>Java Development Kit (JDK) installed (<a href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a>)</li>
+<li>A computer with Docker installed (<a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a>)</li>
+<li>A code editor</li>
+<li>Basic knowledge of Apache web server</li>
 </ul>
 
 <h1>Experiment Steps</h1>
-<h2>Step 1: Setup Maven and Java</h2>
+<h2>Step 1: Install Docker</h2>
 <ul>
-  <li>Ensure that you have Maven and JDK installed on your system. Verify their installations by running the following commands:</li>
+<li>If you haven't already, install Docker on your computer by following the instructions provided on the <a href="https://docs.docker.com/get-docker/">Docker website</a>.</li>
+</ul>
+
+<h2>Step 2: Create a Simple HTML Page</h2>
+<ul>
+<li>Create a directory for your web server project.</li>
+<li>Inside this directory, create a file named <code>index.html</code> with a simple "Hello, Docker!" message. This will be the content served by your Apache web server.</li>
+</ul>
+
+<h2>Step 3: Create a Dockerfile</h2>
+<ul>
+<li>Create a <code>Dockerfile</code> in the same directory as your web server project. The <code>Dockerfile</code> defines how your Apache web server application will be packaged into a Docker container. Here's an example:</li>
 </ul>
 <pre>
-  <code>
-mvn -v
-java -version
-  </code>
+<code>
+# Use an official Apache image as the base image
+FROM httpd:2.4
+
+#Copy your custom HTML page to the web server's document root******
+COPY index.html /usr/local/apache2/htdocs/
+</code>
 </pre>
 
-<h2>Step 2: Create a Maven Java Project</h2>
+<h2>Step 4: Build the Docker Image</h2>
 <ul>
-  <li>Create a new directory for your project, e.g., <code>MavenDemo</code>.</li>
-  <li>Inside the project directory, create a simple Java class, e.g., <code>HelloWorld.java</code>, with the following content:</li>
+<li>Build the Docker image by running the following command in the same directory as your <code>Dockerfile</code>:</li>
 </ul>
 <pre>
-  <code>
-public class HelloWorld {
-public static void main(String[] args) {
-  System.out.println("Hello, Maven!");
-}
-}
-  </code>
+<code>
+docker build -t my-apache-server .
+</code>
 </pre>
 <ul>
-  <li>Create a <code>pom.xml</code> file (Maven Project Object Model) in the project directory. Here's a minimal example:</li>
+<li>Replace <code>my-apache-server</code> with a suitable name for your image.</li>
+</ul>
+
+<h2>Step 5: Run the Docker Container</h2>
+<pre>
+<code>
+docker run -p 8080:80 -d my-apache-server
+</code>
+</pre>
+<ul>
+<li>This command maps port 80 in the container to port 8080 on your host machine and runs the container in detached mode.</li>
+</ul>
+
+<h2>Step 6: Access Your Apache Web Server</h2>
+<ul>
+<li>Access your Apache web server by opening a web browser and navigating to:</li>
 </ul>
 <pre>
-  <code>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
-<groupId>com.example</groupId>
-<artifactId>MavenDemo</artifactId>
-<version>1.0-SNAPSHOT</version>
-</project>
-  </code>
+<code>http://localhost:8080</code>
 </pre>
 
-<h2>Step 3: Explore the Maven Build Phases</h2>
+<h2>Step 7: Cleanup</h2>
 <ul>
-  <li>Clean Phase: To clean the project, run:</li>
+<li>Stop the running Docker container:</li>
 </ul>
 <pre>
-  <code>mvn clean</code>
+<code>
+docker stop &lt;container_id&gt;
+</code>
 </pre>
 <ul>
-  <li>Compile Phase: To compile the Java source code, run:</li>
+<li>Replace <code>&lt;container_id&gt;</code> with the actual ID of your running container.</li>
+<li>Optionally, remove the container and the Docker image:</li>
 </ul>
 <pre>
-  <code>mvn compile</code>
-</pre>
-<ul>
-  <li>Test Phase: To execute unit tests, run:</li>
-</ul>
-<pre>
-  <code>mvn test</code>
-</pre>
-<ul>
-  <li>Package Phase: To package the application into a JAR file, run:</li>
-</ul>
-<pre>
-  <code>mvn package</code>
-</pre>
-<ul>
-  <li>Install Phase: To install the project artifacts into your local Maven repository, run:</li>
-</ul>
-<pre>
-  <code>mvn install</code>
-</pre>
-<ul>
-  <li>Deploy Phase: To deploy artifacts to a remote Maven repository, configure your <code>pom.xml</code> and run:</li>
-</ul>
-<pre>
-  <code>mvn deploy</code>
-</pre>
-
-<h2>Step 4: Run the Application</h2>
-<ul>
-  <li>After running the <code>mvn package</code> command, find the generated JAR file (e.g., <code>MavenDemo-1.0-SNAPSHOT.jar</code>) in the target directory. Run the application using:</li>
-</ul>
-<pre>
-  <code>
-java -cp target/MavenDemo-1.0-SNAPSHOT.jar HelloWorld
-  </code>
+<code>
+docker rm &lt;container_id&gt;
+docker rmi my-apache-server
+</code>
 </pre>
 
 <h1>Conclusion</h1>
 <p>
-  This experiment demonstrates the Maven build lifecycle by creating a simple Java project and executing various Maven build phases. 
-  Maven simplifies the build process by providing a standardized way to manage dependencies, compile code, run tests, and package applications. 
-  Understanding these build phases is essential for Java developers using Maven in their projects.
+In this experiment, you explored containerization and application deployment with Docker by deploying an Apache web server in a Docker container. 
+You learned how to create a Dockerfile, build a Docker image, run a Docker container, and access your web server application from your host machine. 
+Docker's containerization capabilities make it a valuable tool for packaging and deploying applications consistently across different environments.
 </p>
-
